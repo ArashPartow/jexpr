@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+  <script>
+    var Module = {
+      onRuntimeInitialized: function() {
+
+        var ex = new Module.Expression("x[2]+y+z+4+5");
+        var expr = ex.expr;
+        var variables = ex.variables;
+        var args = new Object([
+          ['x', [1.0, 2.0, 3.0]],
+          ['y', 2.0],
+          ['z', 3.0],
+        ]);
+        var problem = new Object();
+        problem.args = Object.fromEntries(args);
+        var j = JSON.stringify(problem);
+        var val = ex.callJSON(j);
+        //ex.freeze();
+        ex.delete();
+        var ok = "ok";
+        console.log('result: ' + val);
+      }
+    };
+  </script>
+  <script src="jexpr.js"></script>
+</html>
